@@ -89,6 +89,24 @@ MainTab:AddToggle({
 	end    
 })
 
+MainTab:AddToggle({
+	Name = "antiafk",
+	Default = false,
+	Callback = function(v)
+		getgenv().antiafk2 =v
+		while true do
+			if not getgenv().antiafk2 then return end
+			local VirtualUser=game:service'VirtualUser'
+			game:service'Players'.LocalPlayer.Idled:connect(function()
+			VirtualUser:CaptureController()
+			VirtualUser:ClickButton2(Vector2.new())
+			end)
+			warn("Anti-Afk has Loaded")
+		wait()
+		end
+	end    
+})
+
 MainTab:AddButton({
 	Name = "antiafk",
 	Callback = function()
