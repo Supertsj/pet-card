@@ -1,30 +1,404 @@
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+if game.PlaceId == 11118216071 then
+    local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
---globals
-local Player = game.Players.LocalPlayer
+    --globals
+    local Player = game.Players.LocalPlayer
 
-local Window = Rayfield:CreateWindow({
-   Name = "Penguin HUB",
-   LoadingTitle = "Pet Trading Card Simulator (penguin HUB)",
-   LoadingSubtitle = "by Penguin :)",
-   ConfigurationSaving = {
-      Enabled = true,
-      FileName = "PenguinHUB"
-   },
-   Discord = {
-    Enabled = false,
-    Invite = "tZVjanwC", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
-    RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+    local Window = Rayfield:CreateWindow({
+    Name = "Penguin HUB",
+    LoadingTitle = "Pet Trading Card Simulator (penguin HUB)",
+    LoadingSubtitle = "by Penguin :)",
+    ConfigurationSaving = {
+        Enabled = true,
+        FileName = "PenguinHUB"
     },
-   KeySystem = true, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "Penguin Hub",
-      Subtitle = "Key System!",
-      Note = "after you put the key just press enter",
-      FileName = "PenguinKey",
-      SaveKey = true,
-      GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = "https://pastebin.com/raw/Ry0pUcqZ"
-   }
-})
+    Discord = {
+        Enabled = false,
+        Invite = "tZVjanwC", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+        RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+        },
+    KeySystem = true, -- Set this to true to use our key system
+    KeySettings = {
+        Title = "Penguin Hub",
+        Subtitle = "Key System!",
+        Note = "get the key in my discord, after you put the key just press enter",
+        FileName = "PenguinKey",
+        SaveKey = true,
+        GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+        Key = "https://pastebin.com/raw/Ry0pUcqZ"
+    }
+    })
+
+    Rayfield:Notify({
+        Title = "Welcome!",
+        Content = "Hello there "..Player.Name.." i hope u like my script :)",
+        Duration = 5,
+        Image = 4483362458,
+        Actions = { -- Notification Buttons
+           Ignore = {
+              Name = "Okay!",
+              Callback = function()
+                print("Player clicked ok!")
+           end
+        },
+     },
+     })
+
+     local MainTab = Window:CreateTab("Main", 4483362458) -- Title, Image
+     local MainSection = MainTab:CreateSection("Player")
+
+     local Button = MainTab:CreateButton({
+        Name = "Destroy GUI",
+        Callback = function()
+            Rayfield:Destroy()
+        end,
+     })
+
+     local Button = MainTab:CreateButton({
+        Name = "Kick yourself if game too laggy or smt",
+        Callback = function()
+            Rayfield:Notify({
+                Title = "Are you sure?",
+                Content = "Hey "..Player.Name..", Are you sure u wanna get kicked?",
+                Duration = 10,
+                Image = 4483362458,
+                Actions = { -- Notification Buttons
+                   Ignore = {
+                      Name = "Yep!",
+                      Callback = function()
+                        Player:kick()
+                   end
+                },
+             },
+             })
+        end,
+     })
+
+     local Slider = MainTab:CreateSlider({
+        Name = "Walkspeed",
+        Range = {0, 1000},
+        Increment = 5,
+        Suffix = "walkspeed",
+        CurrentValue = 16,
+        Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            Player.Character.Humanoid.WalkSpeed = v
+        end,
+     })
+
+     local Slider = MainTab:CreateSlider({
+        Name = "Jumppower",
+        Range = {0, 500},
+        Increment = 5,
+        Suffix = "jumppower",
+        CurrentValue = 16,
+        Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            Player.Character.Humanoid.JumpPower = v
+        end,
+     })
+
+     local FarmTab = Window:CreateTab("Auto Farm", 4483362458) -- Title, Image
+     local FarmSection = FarmTab:CreateSection("Auto Farming....")
+
+     local Toggle = FarmTab:CreateToggle({
+        Name = "auto click",
+        CurrentValue = false,
+        Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autoclick = v
+            while true do
+                if not getgenv().autoclick then return end
+                game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Click"):FireServer()
+            wait()
+            end
+        end,
+     })
+
+     local Toggle = FarmTab:CreateToggle({
+        Name = "auto Rebirth",
+        CurrentValue = false,
+        Flag = "Toggle2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autorebirth =v
+            while true do
+                if not getgenv().autorebirth then return end
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BuyRebirth"):InvokeServer()
+            wait(2)
+            end
+        end,
+     })
+
+     local Section = FarmTab:CreateSection("Boss farming")
+
+     local Toggle = FarmTab:CreateToggle({
+        Name = "farm kraken boss",
+        CurrentValue = false,
+        Flag = "Toggle4", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autokraken = v
+            while true do
+                if not getgenv().autokraken then return end
+                local args = {
+                    [1] = 1,
+                    [2] = "Entering"
+                }
+                
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))                
+            wait()
+            end
+        end,
+     })
+
+     local Button = FarmTab:CreateButton({
+        Name = "stop farming kraken",
+        Callback = function()
+            local args = {
+                [1] = 1,
+                [2] = "Leaving"
+            }
+            
+            game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))            
+        end,
+     })
+
+     local Toggle = FarmTab:CreateToggle({
+        Name = "farm vulcan boss",
+        CurrentValue = false,
+        Flag = "Toggle5", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autovulcan = v
+            while true do
+                if not getgenv().autovulcan then return end
+                local args = {
+                    [1] = 2,
+                    [2] = "Entering"
+                }
+                
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))                
+            wait()
+            end
+        end,
+     })
+
+     local Button = FarmTab:CreateButton({
+        Name = "stop farming vulcan",
+        Callback = function()
+            local args = {
+                [1] = 2,
+                [2] = "Leaving"
+            }
+            
+            game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))
+            
+        end,
+     })
+
+     local Toggle = FarmTab:CreateToggle({
+        Name = "farm pharaith boss",
+        CurrentValue = false,
+        Flag = "Toggle6", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autopharaith = v
+            while true do
+                if not getgenv().autopharaith then return end
+                local args = {
+                    [1] = 3,
+                    [2] = "Entering"
+                }
+                
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))
+                
+            wait()
+            end
+        end,
+     })
+
+     local Button = FarmTab:CreateButton({
+        Name = "stop farming pharaith",
+        Callback = function()
+            local args = {
+                [1] = 3,
+                [2] = "Leaving"
+            }
+            
+            game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))            
+        end,
+     })
+
+     local TPTab = Window:CreateTab("Teleport", 4483362458) -- Title, Image
+     local TPSection = TPTab:CreateSection("Teleport")
+
+     local Button = TPTab:CreateButton({
+        Name = "first island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(156.323669, 0.871291399, -138.837906, -0.0232686624, -6.39493347e-09, 0.999729276, -6.35803659e-08, 1, 4.9168345e-09, -0.999729276, -6.34487449e-08, -0.0232686624)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "second island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.15817785, -6.76544142, -121.837357, 0.0232695173, -9.05286583e-08, 0.999729216, -5.93042131e-08, 1, 9.19335292e-08, -0.999729216, -6.14274072e-08, 0.0232695173)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "third island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-267.565033, -6.76544237, -128.421631, 0.0407129265, -9.87519613e-08, 0.999170899, -1.22319497e-08, 1, 9.93323184e-08, -0.999170899, -1.62659166e-08, 0.0407129265)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "fourth island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-505.294373, -6.76544237, -122.503944, 0.0134720635, 3.79575376e-08, 0.999909222, 5.26029753e-09, 1, -3.80318568e-08, -0.999909222, 5.77218762e-09, 0.0134720635)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "sixth island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-525.52771, -6.76544237, -110.676727, 0.0639521629, 6.41673381e-08, 0.997952938, -5.64123397e-08, 1, -6.06838739e-08, -0.997952938, -5.24159987e-08, 0.0639521629)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "seventh island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-757.798157, -6.76544237, -118.067833, 0.056899257, 2.87266548e-08, 0.998379946, 6.12209616e-09, 1, -2.91221784e-08, -0.998379946, 7.76920839e-09, 0.056899257)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "eight island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1018.56915, -6.76544237, -116.392624, -0.0170007087, -7.91142369e-08, 0.999855459, -1.52975392e-08, 1, 7.88655683e-08, -0.999855459, -1.39545584e-08, -0.0170007087)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "ninth island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1271.89929, -5.63883495, -116.478523, 0.011640572, 7.91028683e-08, 0.99993223, 1.55980118e-08, 1, -7.9289812e-08, -0.99993223, 1.65199339e-08, 0.011640572)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "tenth island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(197.137939, -6.76544189, 3157.3562, 0.0406960361, 5.80679576e-08, 0.999171555, -1.60433924e-08, 1, -5.74626604e-08, -0.999171555, -1.36915999e-08, 0.0406960361)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "eleventh island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.92611265, -6.76544237, 3159.56812, -0.0116530415, 5.57466571e-08, 0.99993211, 1.26104656e-08, 1, -5.56034827e-08, -0.99993211, 1.19616601e-08, -0.0116530415)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "twelth island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(186.354401, 0.871107042, -135.369247, -0.189527512, 0, 0.981875479, 0, 1, 0, -0.981875479, 0, -0.189527512)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "thirteenth island",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(186.354401, 0.871107042, -135.369247, -0.189527512, 0, 0.981875479, 0, 1, 0, -0.981875479, 0, -0.189527512)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "secret place",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(309.281006, -6.76544189, -7325.06934, -0.00480794767, 5.64858702e-08, 0.999988437, 3.05064916e-08, 1, -5.63398466e-08, -0.999988437, 3.02352632e-08, -0.00480794767)
+        end,
+     })
+
+     local AntiAFKTab = Window:CreateTab("Anti AFK", 4483362458) -- Title, Image
+     local AntiAFKSection = AntiAFKTab:CreateSection("anti afk (default = on)")
+
+     local Toggle = AntiAFKTab:CreateToggle({
+        Name = "Anti AFK",
+        CurrentValue = true,
+        Flag = "Toggle7", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            local VirtualUser=game:service'VirtualUser'
+            game:service'Players'.LocalPlayer.Idled:connect(function()
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton2(Vector2.new())
+            end)
+
+            warn("Anti-Afk has Loaded")
+        end,
+     })
+
+     local CreditTab = Window:CreateTab("Credits", 4483362458) -- Title, Image
+     local CreditSection = CreditTab:CreateSection("made by Penguin")
+
+     local NOPETab = Window:CreateTab("Dont come here", 4483362458) -- Title, Image
+     local NOPESection = NOPETab:CreateSection("GO AWAY NOW! THIS IS DANGEROUS")
+
+     local Button = NOPETab:CreateButton({
+        Name = "ban yourself (not working for now)(idk why u doin this but if u clicked on this u stupid)",
+        Callback = function()
+            Rayfield:Notify({
+                Title = "ARE U SURE?",
+                Content = "this is confirmation 1 out of 3!",
+                Duration = 5,
+                Image = 4483362458,
+                Actions = { -- Notification Buttons
+                   Ignore = {
+                      Name = "Yes im sure!",
+                      Callback = function()
+                        Rayfield:Notify({
+                            Title = "ARE YOU SURE??",
+                            Content = "this is confirmation 2 out of 3 !!",
+                            Duration = 5,
+                            Image = 4483362458,
+                            Actions = { -- Notification Buttons
+                               Ignore = {
+                                  Name = "Yes im sure!!",
+                                  Callback = function()
+                                    Rayfield:Notify({
+                                        Title = "ARE U SURE???",
+                                        Content = "this is the last confirmation! if u click yes. dont regret this.",
+                                        Duration = 6.5,
+                                        Image = 4483362458,
+                                        Actions = { -- Notification Buttons
+                                           Ignore = {
+                                              Name = "yes im sure",
+                                              Callback = function()
+                                                getgenv().autoopen = v
+                                                while true do
+                                                    if not getgenv().autoopen then return end
+                                                    local args = {
+                                                        [1] = "Oak Ville Starter",
+                                                        [2] = "single"
+                                                    }
+                                                    
+                                                    game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BuyBooster"):InvokeServer(unpack(args))                                                    
+                                                wait()
+                                                end
+                                           end
+                                        },
+                                     },
+                                     })
+                               end
+                            },
+                         },
+                         })
+                   end
+                },
+             },
+             })
+        end,
+     })
+
+end
 Rayfield:LoadConfiguration()
