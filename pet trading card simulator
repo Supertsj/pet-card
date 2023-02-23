@@ -90,24 +90,6 @@ MainTab:AddToggle({
 })
 
 MainTab:AddToggle({
-	Name = "auto open forest pack",
-	Default = false,
-	Callback = function(v)
-		getgenv().autoopen =v
-		while true do
-			if not getgenv().autoopen then return end
-			local args = {
-    				[1] = "Rune Forest",
-    				[2] = "single"
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BuyBooster"):InvokeServer(unpack(args))
-
-		wait()
-		end
-	end    
-})
-
-MainTab:AddToggle({
 	Name = "antiafk",
 	Default = true,
 	Callback = function(v)
