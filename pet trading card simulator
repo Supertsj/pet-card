@@ -307,7 +307,7 @@ if game.PlaceId == 11118216071 then
      local Button = TPTab:CreateButton({
         Name = "upgrade",
         Callback = function(v)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(122.135292, -0.443048269, 3243.84473, -0.965908766, 0.218753442, -0.138445556, 1.34835343e-08, 0.534781098, 0.844990611, 0.258882672, 0.816183865, -0.516549766)
         end,
      })
 
