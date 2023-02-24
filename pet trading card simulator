@@ -248,6 +248,35 @@ if game.PlaceId == 11118216071 then
      local TPSection = TPTab:CreateSection("Teleport")
 
      local Button = TPTab:CreateButton({
+        Name = "shiny merge",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-82.010849, 0.631253123, -43.4847679, -0.998629272, 0.0260806754, -0.0453798361, -1.03099564e-08, 0.867011309, 0.498288512, 0.0523405299, 0.497605503, -0.865822852)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "Psa Grade",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-416.385223, 6.8589325, -40.8557243, -0.999847829, -0.00558038009, 0.0165277068, -4.72503237e-09, 0.947452784, 0.319895655, -0.017444361, 0.319846988, -0.9473086)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "Psa trader",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-843.91748, 0.496361405, -44.4327049, -0.999170303, 0.0170936678, -0.0369659103, 1.71436536e-08, 0.907655895, 0.419715106, 0.0407267958, 0.419366866, -0.90690285)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "rune enchantment",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(222.537582, 14.5674305, 6012.53516, -0.0699131489, 0.422727734, -0.903555989, 2.93031888e-09, 0.905772328, 0.423764646, 0.99755311, 0.0296267178, -0.0633253977)
+        end,
+     })
+
+
+     local Button = TPTab:CreateButton({
         Name = "first island",
         Callback = function(v)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(156.323669, 0.871291399, -138.837906, -0.0232686624, -6.39493347e-09, 0.999729276, -6.35803659e-08, 1, 4.9168345e-09, -0.999729276, -6.34487449e-08, -0.0232686624)
