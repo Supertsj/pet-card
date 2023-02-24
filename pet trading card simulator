@@ -13,7 +13,7 @@ if game.PlaceId == 11118216071 then
         FileName = "PenguinHUB"
     },
     Discord = {
-        Enabled = true,
+        Enabled = false,
         Invite = "tZVjanwC", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
         RememberJoins = true -- Set this to false to make them join the discord every time they load it up
         },
