@@ -13,9 +13,9 @@ if game.PlaceId == 11118216071 then
         FileName = "PenguinHUB"
     },
     Discord = {
-        Enabled = false,
+        Enabled = true,
         Invite = "tZVjanwC", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
-        RememberJoins = false -- Set this to false to make them join the discord every time they load it up
+        RememberJoins = true -- Set this to false to make them join the discord every time they load it up
         },
     KeySystem = true, -- Set this to true to use our key system
     KeySettings = {
@@ -145,6 +145,24 @@ if game.PlaceId == 11118216071 then
                 }
                 
                 game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))                
+            wait()
+            end
+        end,
+     })
+
+     local Toggle = FarmTab:CreateToggle({
+        Name = "collect kraken chess",
+        CurrentValue = false,
+        Flag = "Toggle4", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autocollectkraken = v
+            while true do
+                if not getgenv().autocollectkraken then return end
+                local args = {
+                    [1] = "Boss1"
+                }
+                
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("ClaimBossChest"):InvokeServer(unpack(args))                
             wait()
             end
         end,
