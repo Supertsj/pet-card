@@ -132,6 +132,24 @@ if game.PlaceId == 11118216071 then
      local Section = FarmTab:CreateSection("Boss farming")
 
      local Toggle = FarmTab:CreateToggle({
+        Name = "turn this on if you cant defeat the boss with your pet!",
+        CurrentValue = false,
+        Flag = "Toggle564734", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autobully = v
+            while true do
+                if not getgenv().autobully then return end
+                local args = {
+                    [1] = "Fire"
+                }
+                
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossAttack"):InvokeServer(unpack(args))                
+            wait()
+            end
+        end,
+     })
+
+     local Toggle = FarmTab:CreateToggle({
         Name = "farm kraken boss",
         CurrentValue = false,
         Flag = "Toggle4", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
@@ -183,7 +201,7 @@ if game.PlaceId == 11118216071 then
      local Toggle = FarmTab:CreateToggle({
         Name = "farm vulcan boss",
         CurrentValue = false,
-        Flag = "Toggle5", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Flag = "Toggle123", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
         Callback = function(v)
             getgenv().autovulcan = v
             while true do
@@ -194,6 +212,24 @@ if game.PlaceId == 11118216071 then
                 }
                 
                 game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))                
+            wait()
+            end
+        end,
+     })
+
+     local Toggle = FarmTab:CreateToggle({
+        Name = "collect vulcan chess",
+        CurrentValue = false,
+        Flag = "Toggle234567", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autocollectvulcan = v
+            while true do
+                if not getgenv().autocollectvulcan then return end
+                local args = {
+                    [1] = "Boss2"
+                }
+                
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("ClaimBossChest"):InvokeServer(unpack(args))                
             wait()
             end
         end,
@@ -265,6 +301,13 @@ if game.PlaceId == 11118216071 then
         Name = "Psa trader",
         Callback = function(v)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-843.91748, 0.496361405, -44.4327049, -0.999170303, 0.0170936678, -0.0369659103, 1.71436536e-08, 0.907655895, 0.419715106, 0.0407267958, 0.419366866, -0.90690285)
+        end,
+     })
+
+     local Button = TPTab:CreateButton({
+        Name = "upgrade",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new()
         end,
      })
 
@@ -349,14 +392,14 @@ if game.PlaceId == 11118216071 then
      local Button = TPTab:CreateButton({
         Name = "twelth island",
         Callback = function(v)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(186.354401, 0.871107042, -135.369247, -0.189527512, 0, 0.981875479, 0, 1, 0, -0.981875479, 0, -0.189527512)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-508.791718, -6.76543999, 3164.87671, 0.0220366437, 9.60649604e-09, -0.999757171, -1.52512461e-10, 1, 9.60546753e-09, 0.999757171, -5.91968419e-11, 0.0220366437)
         end,
      })
 
      local Button = TPTab:CreateButton({
         Name = "thirteenth island",
         Callback = function(v)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(186.354401, 0.871107042, -135.369247, -0.189527512, 0, 0.981875479, 0, 1, 0, -0.981875479, 0, -0.189527512)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-542.143677, -6.76544189, 3155.56616, -0.00880299695, -7.86890197e-08, 0.999961257, 6.2037266e-08, 1, 7.92382053e-08, -0.999961257, 6.27323971e-08, -0.00880299695)
         end,
      })
 
