@@ -13,7 +13,7 @@ if game.PlaceId == 11118216071 then
         FileName = "PenguinHUB"
     },
     Discord = {
-        Enabled = false,
+        Enabled = true,
         Invite = "tZVjanwC", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
         RememberJoins = true -- Set this to false to make them join the discord every time they load it up
         },
@@ -344,55 +344,34 @@ if game.PlaceId == 11118216071 then
      local NOPETab = Window:CreateTab("Dont come here", 4483362458) -- Title, Image
      local NOPESection = NOPETab:CreateSection("GO AWAY NOW! THIS IS DANGEROUS")
 
-     local Button = NOPETab:CreateButton({
-        Name = "ban yourself (not working for now)(idk why u doin this but if u clicked on this u stupid)",
-        Callback = function()
+     local Paragraph = NOPETab:CreateParagraph({Title = "nothing", Content = "turn on if u wanna get banned"})
+
+     local Paragraph = NOPETab:CreateParagraph({Title = "reminder", Content = "if u wanna get banned then clear up your pet storage!"})
+
+     local Toggle = NOPETab:CreateToggle({
+        Name = "Do Not Turn On unless u wanna get banned! (you might just get kick sometime but sometime u will gget banned!)",
+        CurrentValue = false,
+        Flag = "Toggle10", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
             Rayfield:Notify({
-                Title = "ARE U SURE?",
-                Content = "this is confirmation 1 out of 3!",
+                Title = "confirmation!",
+                Content = "u sure u wanna get banned?",
                 Duration = 5,
                 Image = 4483362458,
                 Actions = { -- Notification Buttons
                    Ignore = {
-                      Name = "Yes im sure!",
+                      Name = "yes im sure!",
                       Callback = function()
-                        Rayfield:Notify({
-                            Title = "ARE YOU SURE??",
-                            Content = "this is confirmation 2 out of 3 !!",
-                            Duration = 5,
-                            Image = 4483362458,
-                            Actions = { -- Notification Buttons
-                               Ignore = {
-                                  Name = "Yes im sure!!",
-                                  Callback = function()
-                                    Rayfield:Notify({
-                                        Title = "ARE U SURE???",
-                                        Content = "this is the last confirmation! if u click yes. dont regret this.",
-                                        Duration = 6.5,
-                                        Image = 4483362458,
-                                        Actions = { -- Notification Buttons
-                                           Ignore = {
-                                              Name = "yes im sure",
-                                              Callback = function()
-                                                getgenv().autoopen = v
-                                                while true do
-                                                    if not getgenv().autoopen then return end
-                                                    local args = {
-                                                        [1] = "Oak Ville Starter",
-                                                        [2] = "single"
-                                                    }
-                                                    
-                                                    game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BuyBooster"):InvokeServer(unpack(args))                                                    
-                                                wait()
-                                                end
-                                           end
-                                        },
-                                     },
-                                     })
-                               end
-                            },
-                         },
-                         })
+                        getgenv().autoopen = v
+                        while true do
+                            local args = {
+                                [1] = "Oak Ville Starter",
+                                [2] = "single"
+                            }
+                            
+                            game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BuyBooster"):InvokeServer(unpack(args))
+                        wait()
+                        end
                    end
                 },
              },
