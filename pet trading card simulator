@@ -12,21 +12,6 @@ if game.PlaceId == 11118216071 then
         Enabled = true,
         FileName = "PenguinHUB"
     },
-    Discord = {
-        Enabled = false,
-        Invite = "tZVjanwC", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
-        RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-        },
-    KeySystem = false, -- Set this to true to use our key system
-    KeySettings = {
-        Title = "Penguin Hub",
-        Subtitle = "Key System!",
-        Note = "get the key in my discord, after you put the key just press enter",
-        FileName = "PenguinKey",
-        SaveKey = true,
-        GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-        Key = "https://pastebin.com/raw/Ry0pUcqZ"
-    }
     })
 
     Rayfield:Notify({
