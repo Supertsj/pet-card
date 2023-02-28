@@ -5,13 +5,13 @@ if game.PlaceId == 11118216071 then
     local Player = game.Players.LocalPlayer
 
     local Window = Rayfield:CreateWindow({
-    Name = "Penguin HUB",
-    LoadingTitle = "Pet Trading Card Simulator (penguin HUB)",
-    LoadingSubtitle = "by Penguin :)",
-    ConfigurationSaving = {
-        Enabled = true,
-        FileName = "PenguinHUB"
-    },
+        Name = "Penguin HUB",
+        LoadingTitle = "Pet Trading Card Simulator (penguin HUB)",
+        LoadingSubtitle = "by Penguin :)",
+        ConfigurationSaving = {
+            Enabled = true,
+            FileName = "PenguinHUB"
+        },
     })
 
     Rayfield:Notify({
@@ -39,39 +39,20 @@ if game.PlaceId == 11118216071 then
         end,
      })
 
-     local Toggle = FarmTab:CreateToggle({
-        Name = "auto claim quest",
-        CurrentValue = false,
-        Flag = "Toggle453678423432", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-        Callback = function(v)
-            getgenv().autoquest = v
-            while true do
-                if not getgenv().autoquest then return end
-            wait()
-            end
-        end,
-     })
 
      local Button = MainTab:CreateButton({
-        Name = "Kick yourself if game too laggy or smt",
+        Name = "Kick yourself",
         Callback = function()
             Rayfield:Notify({
-                Title = "Are you sure?",
-                Content = "Hey "..Player.Name..", Are you sure u wanna get kicked?",
-                Duration = 10,
+                Title = "Are u sure?",
+                Content = "Notification Content",
+                Duration = 5,
                 Image = 4483362458,
                 Actions = { -- Notification Buttons
                    Ignore = {
                       Name = "Yep!",
                       Callback = function()
                         Player:kick()
-                   end
-                },
-                Actions = { -- Notification Buttons
-                   Ignore = {
-                      Name = "nope!",
-                      Callback = function()
-                        print('nice')
                    end
                 },
              },
