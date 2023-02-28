@@ -39,6 +39,19 @@ if game.PlaceId == 11118216071 then
         end,
      })
 
+     local Toggle = FarmTab:CreateToggle({
+        Name = "auto claim quest",
+        CurrentValue = false,
+        Flag = "Toggle453678423432", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autoquest = v
+            while true do
+                if not getgenv().autoquest then return end
+            wait()
+            end
+        end,
+     })
+
      local Button = MainTab:CreateButton({
         Name = "Kick yourself if game too laggy or smt",
         Callback = function()
@@ -52,6 +65,13 @@ if game.PlaceId == 11118216071 then
                       Name = "Yep!",
                       Callback = function()
                         Player:kick()
+                   end
+                },
+                Actions = { -- Notification Buttons
+                   Ignore = {
+                      Name = "nope!",
+                      Callback = function()
+                        print('nice')
                    end
                 },
              },
@@ -125,11 +145,11 @@ if game.PlaceId == 11118216071 then
             while true do
                 if not getgenv().autobully then return end
                 local args = {
-                    [1] = "Fire"
+                    [1] = "Fairy"
                 }
-                
-                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossAttack"):InvokeServer(unpack(args))                
-            wait()
+
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossAttack"):InvokeServer(unpack(args))
+            wait(3)
             end
         end,
      })
@@ -248,6 +268,24 @@ if game.PlaceId == 11118216071 then
                 
                 game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))
                 
+            wait()
+            end
+        end,
+     })
+
+          local Toggle = FarmTab:CreateToggle({
+        Name = "collect Pharaith chess",
+        CurrentValue = false,
+        Flag = "Toggle4", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autocollectPharaith = v
+            while true do
+                if not getgenv().autocollectPharaith then return end
+                local args = {
+                    [1] = "Boss3"
+                }
+
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("ClaimBossChest"):InvokeServer(unpack(args))
             wait()
             end
         end,
