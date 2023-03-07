@@ -128,9 +128,41 @@ if game.PlaceId == 11118216071 then
                 local args = {
                     [1] = "Fairy"
                 }
+                
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossAttack"):InvokeServer(unpack(args))                
+            wait()
+            end
+        end,
+     })
 
-                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossAttack"):InvokeServer(unpack(args))
-            wait(3)
+     local Toggle = FarmTab:CreateToggle({
+        Name = "farm new boss",
+        CurrentValue = false,
+        Flag = "Toggle4", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autonew = v
+            while true do
+                if not getgenv().autonew then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1092.60767, 38.9240074, 6013.98828, -0.0464536734, -0.983744383, 0.173462063, -1.02845359e-08, 0.173649535, 0.984807491, -0.998920441, 0.0457479246, -0.00806666911)
+            wait(12)
+            end
+        end,
+     })
+
+     local Toggle = FarmTab:CreateToggle({
+        Name = "collect kraken chess",
+        CurrentValue = false,
+        Flag = "Toggle4", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Callback = function(v)
+            getgenv().autocollectnew = v
+            while true do
+                if not getgenv().autocollectnew then return end
+                local args = {
+                    [1] = "Boss4"
+                }
+                
+                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("ClaimBossChest"):InvokeServer(unpack(args))                
+            wait()
             end
         end,
      })
