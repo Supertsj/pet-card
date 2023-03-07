@@ -143,13 +143,8 @@ if game.PlaceId == 11118216071 then
             getgenv().autokraken = v
             while true do
                 if not getgenv().autokraken then return end
-                local args = {
-                    [1] = 1,
-                    [2] = "Entering"
-                }
-                
-                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))                
-            wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-367.227448, 33.4104462, -240.628998, 0.996649683, -0.0644711554, 0.0503279082, -2.11565006e-08, 0.615338683, 0.788262844, -0.0817889273, -0.785621881, 0.613277137)
+            wait(12)
             end
         end,
      })
@@ -192,13 +187,8 @@ if game.PlaceId == 11118216071 then
             getgenv().autovulcan = v
             while true do
                 if not getgenv().autovulcan then return end
-                local args = {
-                    [1] = 2,
-                    [2] = "Entering"
-                }
-                
-                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))                
-            wait()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1588.14368, 59.7690926, -124.212929, -0.213534921, -0.575742304, 0.789255142, 4.4528905e-09, 0.807888746, 0.589335024, -0.976935446, 0.125843614, -0.172512457)
+            wait(12)
             end
         end,
      })
@@ -235,26 +225,21 @@ if game.PlaceId == 11118216071 then
      })
 
      local Toggle = FarmTab:CreateToggle({
-        Name = "farm pharaith boss",
+        Name = "farm ahnket boss",
         CurrentValue = false,
-        Flag = "Toggle6", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Flag = "Toggle123", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
         Callback = function(v)
-            getgenv().autopharaith = v
+            getgenv().autoahnket = v
             while true do
-                if not getgenv().autopharaith then return end
-                llocal args = {
-                    [1] = 3,
-                    [2] = "Entering"
-                }
-
-                game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("BossBattle"):InvokeServer(unpack(args))
-            wait()
+                if not getgenv().autoahnket then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-827.528076, 59.4531708, 3152.3269, -0.0353573412, -0.704654098, 0.708669484, -1.43412953e-08, 0.709112883, 0.705094993, -0.999374747, 0.024930276, -0.0250723567)
+            wait(12)
             end
         end,
      })
 
-          local Toggle = FarmTab:CreateToggle({
-        Name = "collect Pharaith chess",
+    local Toggle = FarmTab:CreateToggle({
+        Name = "collect Ahnket chess",
         CurrentValue = false,
         Flag = "Toggle4", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
         Callback = function(v)
@@ -272,7 +257,7 @@ if game.PlaceId == 11118216071 then
      })
 
      local Button = FarmTab:CreateButton({
-        Name = "stop farming pharaith",
+        Name = "stop Ahnket pharaith",
         Callback = function()
             local args = {
                 [1] = 3,
